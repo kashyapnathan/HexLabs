@@ -12,7 +12,6 @@ function App() {
     <div className="App">
       <h1 class = "title"> Fraud Dashboard </h1>
       <Slider/>
-      <TransactionChecker/>
       <DetectionScoreViewer transactionId="sample_transaction_id" />
       <div class = "history">
         <div class = "recentFrauds">

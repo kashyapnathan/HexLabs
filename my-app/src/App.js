@@ -12,8 +12,14 @@ function App() {
       <h1>Fraud Detection App</h1>
       <TransactionChecker />
       <DetectionScoreViewer transactionId="sample_transaction_id" />
-      <FraudGraph />
-      <RecentFrauds />
+      <div class = "history">
+        <div class = "recentFrauds">
+          <RecentFrauds />
+        </div>
+        <div class = "fraudGraph">
+          <FraudGraph />
+        </div>
+      </div>
       <UserTransactions userId="sample_user_id" />
     </div>
   );

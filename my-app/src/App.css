@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-color: #bde3ff84;
+  margin: 50px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  border-radius: 20px;
+
 }
 
 .App-logo {
@@ -36,3 +42,16 @@
     transform: rotate(360deg);
   }
 }
+
+.history {
+  display: flex;
+  align-items:flex-start;
+  justify-content: space-around;
+  margin-inline: 10px;
+  background-color: aliceblue;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 5px;
+}
+
+

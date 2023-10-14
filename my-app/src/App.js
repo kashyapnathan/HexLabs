@@ -4,6 +4,7 @@ import DetectionScoreViewer from './components/DetectionScoreViewer';
 import FraudGraph from './components/FraudGraph';
 import RecentFrauds from './components/RecentFrauds';
 import UserTransactions from './components/UserTransactions';
+
 import {
   Box,
   Heading,

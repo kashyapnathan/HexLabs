@@ -23,6 +23,7 @@ function DetectionScoreViewer({ transactionId }) {
   }, [transactionId]);
 
   return (
+
     <Box p={4} borderWidth={1} borderRadius="lg">
       <Heading size="md">Detection Score</Heading>
       {score !== null ? (
@@ -34,6 +35,7 @@ function DetectionScoreViewer({ transactionId }) {
         </Box>
       )}
     </Box>
+
   );
 }
 

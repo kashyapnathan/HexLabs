@@ -1,76 +1,72 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request, jsonify
+from flask_socketio import SocketIO, emit
 from flask_cors import CORS
-import h5py
-from pymongo import MongoClient
+import joblib
+import numpy as np
+import random
 
 app = Flask(__name__)
-CORS(app)  # enabling CORS for all routes
+CORS(app)  
+socketio = SocketIO(app, cors_allowed_origins="*")
 
-# MongoDB setup
-client = MongoClient('your_mongo_db_connection_string')
-db = client['your_database_name']
+# Load the model (replace with your model's path)
+model = joblib.load('boosting.joblib')
 
-@app.route('/')
-def home():
-    return "Welcome to Fraud Detection Backend!"
+# Sample Data
+recent_frauds = [{'transaction_id': 'tx001'}, {'transaction_id': 'tx002'}]
+graph_data = []
+user_transactions = [{'user_id': 'sample_user_id', 'transaction_id': 'tx003'}]
 
-@app.route('/api/fraud-check', methods=['POST'])
-def check_fraud():
-    transaction_data = request.json.get('transaction_data')
-
-    # Perform fraud check (using ML model or rule-based system - utilizing H5 file)
-    is_fraudulent = fraud_check_logic(transaction_data)
-
-    # Formulate response
-    response = {
-        "is_fraudulent": is_fraudulent,
-        "message": "Fraud Detected" if is_fraudulent else "No Fraud Detected"
-    }
-    return jsonify(response)
-
-
-@app.route('/api/get-detection-score/<transaction_id>')
+@app.route('/api/get-detection-score/<string:transaction_id>', methods=['GET'])
 def get_detection_score(transaction_id):
-    # Logic to fetch and return detection score from MongoDB or H5 file
-    # Replace the following logic as per your actual implementation
-    score = db.transactions.find_one({"transaction_id": transaction_id})["score"]
-    return jsonify({"score": score})
+    dummy_score = {'transaction_id': transaction_id, 'score': 87.5}
+    return jsonify(dummy_score)
 
-@app.route('/api/get-fraud-graph-data')
-def get_fraud_graph_data():
-    # Logic to fetch and return data for graphs (like fraud trends over time)
-    # Replace the following logic as per your actual implementation
-    graph_data = list(db.graph_data.find({}))
-    return jsonify(graph_data)
-
-@app.route('/api/get-recent-frauds')
+@app.route('/api/get-recent-frauds', methods=['GET'])
 def get_recent_frauds():
-    # Logic to fetch and return recent fraud transactions
-    # Replace the following logic as per your actual implementation
-    recent_frauds = list(db.frauds.find().limit(5))
     return jsonify(recent_frauds)
 
-@app.route('/api/add-transaction', methods=['POST'])
-def add_transaction():
-    # Logic to add a transaction data to MongoDB
-    # Replace the following logic as per your actual implementation
-    transaction_data = request.json.get('transaction_data')
-    db.transactions.insert_one(transaction_data)
-    return jsonify({"status": "Transaction Added"})
+@app.route('/api/get-fraud-graph-data', methods=['GET'])
+def get_fraud_graph_data():
+    return jsonify(graph_data)
 
-@app.route('/api/get-user-transactions/<user_id>')
+@app.route('/api/get-user-transactions/<string:user_id>', methods=['GET'])
 def get_user_transactions(user_id):
-    # Logic to fetch and return all transactions of a specific user
-    # Replace the following logic as per your actual implementation
-    user_transactions = list(db.transactions.find({"user_id": user_id}))
-    return jsonify(user_transactions)
+    transactions = [tx for tx in user_transactions if tx['user_id'] == user_id]
+    return jsonify(transactions)
 
-@app.route('/api/get-transaction/<transaction_id>')
-def get_transaction(transaction_id):
-    # Logic to fetch and return a specific transaction data
-    # Replace the following logic as per your actual implementation
-    transaction = db.transactions.find_one({"transaction_id": transaction_id})
-    return jsonify(transaction)
+@app.route('/api/fraud-check', methods=['POST'])
+def fraud_check():
+    transaction_data = request.json.get('transactionData')
+    
+    # Ensure to process the input data as per your model’s requirements
+    features = np.array([transaction_data[key] for key in transaction_data]).reshape(1, -1)
+    prediction = model.predict(features)
+    
+    is_fraudulent = prediction[0] == 1  
+    return jsonify({'is_fraudulent': is_fraudulent})
 
+@app.route('/api/submit-transaction', methods=['POST'])
+def submit_transaction():
+    transaction_data = request.json.get('transactionData')
+    
+    # Logic to process and validate the transaction data
+    # Check for fraud and save the transaction to the database
+    # ...
+
+    if random.choice([True, False]):  # Simulate a fraud detection
+        recent_frauds.append(transaction_data)
+        socketio.emit('new_fraud', transaction_data)
+    
+    user_transactions.append(transaction_data)
+    socketio.emit('new_user_transaction', transaction_data)
+    
+    new_fraud_count = random.randint(0, 10)  
+    graph_data.append({'time': '2022-01-02', 'fraud_count': new_fraud_count})
+    socketio.emit('update_graph', graph_data[-1])
+    
+    return jsonify({'status': 'Transaction submitted successfully'})
+
+# Run the app
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    socketio.run(app, port=5000)

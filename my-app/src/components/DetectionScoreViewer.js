@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {
+  Box,
+  Heading,
+  Text,
+  Spinner
+} from "@chakra-ui/react";
 
 function DetectionScoreViewer({ transactionId, threshold }) {
   const [score, setScore] = useState(70);
@@ -27,20 +33,6 @@ function DetectionScoreViewer({ transactionId, threshold }) {
   }, [score, threshold]);
 
   return (
-    <div className="userInfo">
-      <div className="circle" style={{ backgroundColor: circleColor }}>
-        {score !== null ? (
-          <p className="score">{score}</p>
-        ) : (
-          <p className="loading">Loading score...</p>
-        )}
-      </div>
-      <h2 className="fraudScoreText"> Fraud Score </h2>
-      <div className="infoPart">
-        <p> Transaction ID: {transID} </p>
-        <p> Name: {name} </p>
-      </div>
-    </div>
   );
 }
 

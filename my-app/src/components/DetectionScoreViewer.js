@@ -25,7 +25,7 @@ function DetectionScoreViewer({ transactionId }) {
           <p className="loading">Loading score...</p>
         )}
       </div>
-      <h2 class = "fraudScoreText" align="left"> Fraud Score </h2>
+      <h2 class = "fraudScoreText"> Fraud Score </h2>
     </div>
   );
 }

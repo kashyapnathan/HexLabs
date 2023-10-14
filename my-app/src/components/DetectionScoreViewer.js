@@ -17,13 +17,15 @@ function DetectionScoreViewer({ transactionId }) {
   }, [transactionId]);
 
   return (
-    <div>
-      <h2>Detection Score</h2>
-      {score !== null ? (
-        <p>Detection Score: {score}</p>
-      ) : (
-        <p>Loading score...</p>
-      )}
+    <div className="circle-container">
+      <div className="circle">
+        {score !== null ? (
+          <p className="score">Detection Score: {score}</p>
+        ) : (
+          <p className="loading">Loading score...</p>
+        )}
+      </div>
+      <h2 class = "fraudScoreText" align="left"> Fraud Score </h2>
     </div>
   );
 }

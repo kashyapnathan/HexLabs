@@ -64,4 +64,42 @@
   font-weight: 130;
 }
 
+.circle-container {
+  text-align: center;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #3498db;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.score {
+  font-size: inherit;
+  color: inherit;
+}
+
+.loading {
+  font-size: inherit;
+  color: inherit;
+}
+
+.fraudScoreText {
+  align-items: left;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 

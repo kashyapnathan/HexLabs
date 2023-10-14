@@ -1,28 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import TransactionChecker from './components/TransactionChecker';
 import DetectionScoreViewer from './components/DetectionScoreViewer';
 import FraudGraph from './components/FraudGraph';
-import RecentFrauds from './components/RecentFrauds';
+import FraudAnaltyics from './components/FraudAnaltyics';
 import UserTransactions from './components/UserTransactions';
 import Slider from './components/Slider';
-import './App.css';
-
-
 
 function App() {
+  const [threshold, setThreshold] = useState(50);
+
+  const handleSliderChange = (event) => {
+    setThreshold(Number(event.target.value));
+  };
+
   return (
     <div className="App">
-      <h1 class = "title"> Fraud Dashboard </h1>
-      <Slider/>
-      <DetectionScoreViewer transactionId="sample_transaction_id" />
-      <div class = "history">
-        <div class = "recentFrauds">
-          <RecentFrauds />
-        </div>
-        <div class = "fraudGraph">
-          <FraudGraph />
-        </div>
+      <h1 className="title"> Fraud Dashboard </h1>
+      <Slider threshold={threshold} onSliderChange={handleSliderChange} />
+      <DetectionScoreViewer transactionId="sample_transaction_id" threshold={threshold} />
+      <div className="history">
+        <FraudAnaltyics />
       </div>
       <UserTransactions userId="sample_user_id" />
     </div>

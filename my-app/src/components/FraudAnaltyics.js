@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function RecentFrauds() {
+function FraudAnaltyics() {
   const [recentFrauds, setRecentFrauds] = useState([]);
 
   useEffect(() => {
@@ -17,8 +17,8 @@ function RecentFrauds() {
   }, []);
 
   return (
-    <div>
-      <h2>Recent Frauds</h2>
+    <div class = "analytics">
+      <h2>Fraud Analytics</h2>
       <ul>
         {recentFrauds.map((fraud, index) => (
           <li key={index}>{fraud.transaction_id}</li>  // Adjust as per your data structure
@@ -28,4 +28,4 @@ function RecentFrauds() {
   );
 }
 
-export default RecentFrauds;
+export default FraudAnaltyics;

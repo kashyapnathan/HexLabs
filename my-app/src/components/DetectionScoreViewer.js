@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function DetectionScoreViewer({ transactionId }) {
-  const [score, setScore] = useState(null);
+function DetectionScoreViewer({ transactionId, threshold }) {
+  const [score, setScore] = useState(70);
   const [transID, setID] = useState("XXXXXXXXXXX");
   const [name, setName] = useState("First Last");
-
+  const [circleColor, setCircleColor] = useState('gray'); // Initialize with gray
 
   useEffect(() => {
     const fetchDetectionScore = async () => {
@@ -19,22 +19,27 @@ function DetectionScoreViewer({ transactionId }) {
     fetchDetectionScore();
   }, [transactionId]);
 
+  // Calculate the circle color based on the threshold and score
+  useEffect(() => {
+    if (score !== null) {
+      setCircleColor(score > threshold ? '#913831' : 'green');
+    }
+  }, [score, threshold]);
+
   return (
-    <div class = "userInfo">
-    <div className="circle-container">
-      <div className="circle">
+    <div className="userInfo">
+      <div className="circle" style={{ backgroundColor: circleColor }}>
         {score !== null ? (
-          <p className="score">Detection Score: {score}</p>
+          <p className="score">{score}</p>
         ) : (
           <p className="loading">Loading score...</p>
         )}
       </div>
-      <h2 class = "fraudScoreText"> Fraud Score </h2>
-    </div>
-    <div class = "infoPart">
-      <p> Transaction ID: {transID} </p>
-      <p> Name: {name} </p>
-    </div>
+      <h2 className="fraudScoreText"> Fraud Score </h2>
+      <div className="infoPart">
+        <p> Transaction ID: {transID} </p>
+        <p> Name: {name} </p>
+      </div>
     </div>
   );
 }

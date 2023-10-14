@@ -39,6 +39,10 @@ function DetectionScoreViewer({ transactionId, threshold }) {
       <div className="infoPart">
         <p> Transaction ID: {transID} </p>
         <p> Name: {name} </p>
+        {/* Add the fetch score button */}
+        <button className="Next">
+          Next
+        </button>
       </div>
     </div>
   );

@@ -1,34 +1,28 @@
 import React from 'react';
+import './App.css';
 import TransactionChecker from './components/TransactionChecker';
 import DetectionScoreViewer from './components/DetectionScoreViewer';
 import FraudGraph from './components/FraudGraph';
 import RecentFrauds from './components/RecentFrauds';
 import UserTransactions from './components/UserTransactions';
-
-import {
-  Box,
-  Heading,
-  VStack,
-  HStack,
-  Grid
-} from "@chakra-ui/react";
+import Slider from './components/Slider';
 
 function App() {
   return (
-    <VStack spacing={5} p={5}>
-      <Heading>Fraud Detection App</Heading>
-      <TransactionChecker />
+    <div className="App">
+      <h1 class = "title"> Fraud Dashboard </h1>
+      <Slider/>
       <DetectionScoreViewer transactionId="sample_transaction_id" />
-      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6} w="full">
-        <Box w="full">
+      <div class = "history">
+        <div class = "recentFrauds">
           <RecentFrauds />
-        </Box>
-        <Box w="full">
+        </div>
+        <div class = "fraudGraph">
           <FraudGraph />
-        </Box>
-      </Grid>
+        </div>
+      </div>
       <UserTransactions userId="sample_user_id" />
-    </VStack>
+    </div>
   );
 }
 

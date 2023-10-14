@@ -22,7 +22,7 @@ function DetectionScoreViewer({ transactionId, threshold }) {
   // Calculate the circle color based on the threshold and score
   useEffect(() => {
     if (score !== null) {
-      setCircleColor(score > threshold ? '#913831' : 'green');
+      setCircleColor(score >= threshold ? '#913831' : 'green');
     }
   }, [score, threshold]);
 

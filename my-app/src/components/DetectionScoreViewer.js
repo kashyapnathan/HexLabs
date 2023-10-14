@@ -4,7 +4,7 @@ import axios from 'axios';
 function DetectionScoreViewer({ transactionId, threshold }) {
   const [score, setScore] = useState(70);
   const [transID, setID] = useState("XXXXXXXXXXX");
-  const [name, setName] = useState("First Last");
+  const [name, setName] = useState("Jeffrey Dahmer");
   const [circleColor, setCircleColor] = useState('gray'); // Initialize with gray
 
   useEffect(() => {

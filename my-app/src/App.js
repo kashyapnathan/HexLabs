@@ -6,6 +6,9 @@ import FraudGraph from './components/FraudGraph';
 import RecentFrauds from './components/RecentFrauds';
 import UserTransactions from './components/UserTransactions';
 import Slider from './components/Slider';
+import './App.css';
+
+
 
 function App() {
   return (

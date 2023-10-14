@@ -7,8 +7,11 @@ import {
   Spinner
 } from "@chakra-ui/react";
 
-function DetectionScoreViewer({ transactionId }) {
-  const [score, setScore] = useState(null);
+function DetectionScoreViewer({ transactionId, threshold }) {
+  const [score, setScore] = useState(70);
+  const [transID, setID] = useState("XXXXXXXXXXX");
+  const [name, setName] = useState("First Last");
+  const [circleColor, setCircleColor] = useState('gray'); // Initialize with gray
 
   useEffect(() => {
     const fetchDetectionScore = async () => {
@@ -22,20 +25,14 @@ function DetectionScoreViewer({ transactionId }) {
     fetchDetectionScore();
   }, [transactionId]);
 
+  // Calculate the circle color based on the threshold and score
+  useEffect(() => {
+    if (score !== null) {
+      setCircleColor(score >= threshold ? '#913831' : 'green');
+    }
+  }, [score, threshold]);
+
   return (
-
-    <Box p={4} borderWidth={1} borderRadius="lg">
-      <Heading size="md">Detection Score</Heading>
-      {score !== null ? (
-        <Text fontSize="lg">Detection Score: {score}</Text>
-      ) : (
-        <Box mt={2}>
-          <Spinner />
-          <Text mt={2}>Loading score...</Text>
-        </Box>
-      )}
-    </Box>
-
   );
 }
 

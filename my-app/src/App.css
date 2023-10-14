@@ -40,6 +40,15 @@
   color: white;
 }
 
+.userInfo{
+padding-top: 20px;
+display: flex;
+flex-direction: row;
+background-color: #32415e46;
+justify-content: space-around;
+margin-bottom: 20px;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -79,7 +88,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 50px;
   font-weight: bold;
   color: black;
   margin-left: 20px;
@@ -98,6 +107,7 @@
 
 .fraudScoreText {
   align-items: left;
+  margin-left: 20px;
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;

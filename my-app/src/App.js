@@ -9,7 +9,7 @@ import UserTransactions from './components/UserTransactions';
 function App() {
   return (
     <div className="App">
-      <h1>Fraud Detection App</h1>
+      <h1 class = "title">Fraud Detection App</h1>
       <TransactionChecker />
       <DetectionScoreViewer transactionId="sample_transaction_id" />
       <div class = "history">

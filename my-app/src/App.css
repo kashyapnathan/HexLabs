@@ -1,11 +1,16 @@
 .App {
   text-align: center;
-  background-color: #bde3ff84;
+  background-color: rgb(32, 29, 52);
   margin: 50px;
   padding-top: 10px;
   padding-bottom: 15px;
   border-radius: 20px;
+  color: white;
+  font-weight: 130;
+}
 
+.title {
+  font-weight: 120;
 }
 
 .App-logo {
@@ -47,11 +52,16 @@
   display: flex;
   align-items:flex-start;
   justify-content: space-around;
+  font-weight: 130;
   margin-inline: 10px;
-  background-color: aliceblue;
+  background-color: rgb(38, 40, 78);
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 5px;
+}
+
+.fraudGraph{
+  font-weight: 130;
 }
 
 

@@ -10,7 +10,14 @@
 }
 
 .title {
-  font-weight: 120;
+  color: #fff; /* Text color */
+  font-weight: 300;
+  align-items: center;
+  text-align: center;
+}
+.input {
+  margin-top: 30px;
+  padding-bottom: 0px ;
 }
 
 .App-logo {
@@ -30,8 +37,15 @@
 }
 
 .userPart {
-  margin-right: 15px;
+  margin-right: 30px;
+  padding-right: 20px;
 
+}
+
+.infoPart {
+  margin-left: 10px;
+  text-align: left;
+  padding-left: 20px;
 }
 
 
@@ -53,15 +67,14 @@
 }
 
 .userInfo{
+margin-top: 25px;
 padding-top: 20px;
-padding-bottom: 10px;
+padding-bottom: 2px;
 display: flex;
 flex-direction: row;
 justify-content: center;
-margin-bottom: 20px;
-background-color: #32415e46;
-
-
+margin-bottom: -40px;
+/* background-color: #32415e46; */
 }
 
 .App-link {
@@ -79,11 +92,14 @@ background-color: #32415e46;
 
 .history {
   display: flex;
-  align-items:flex-start;
+  align-items: center;
+  flex-direction: column;
   font-weight: 100;
   background-color: rgb(38, 40, 78);
   padding-bottom: 30px;
   border-radius: 5px;
+  margin-top: -90px; /* Adjust this value to move it up */
+  padding-top: -20px; /* This line seems unnecessary and can be removed */
 }
 
 .fraudGraph{
@@ -94,9 +110,15 @@ background-color: #32415e46;
   text-align: center;
 }
 
+.input {
+  margin-bottom: 30px;
+  padding-left: 15px;
+  margin-right: 20px;
+}
+
 .circle {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background-color: #3498db;
   display: flex;
@@ -115,9 +137,19 @@ background-color: #32415e46;
   color: inherit;
 }
 
+.graphs{
+  display: flex;
+  justify-content: space-around;
+}
+
+.anal {
+
+  margin-bottom: 40px;
+}
+
 .loading {
-  font-size: inherit;
-  color: inherit;
+  font-size: small;
+  align-items: center;
 }
 
 .fraudScoreText {

@@ -8,4 +8,6 @@ This dataset has been processed, split into train and test, and it was used for 
 
 Link to Data Engineering/ML Notebook: https://colab.research.google.com/drive/1DgI242EtbE02Z01fm8O7N3c4bkqQwU2q?usp=sharing
 
+Link to Necessary Datapoints/ML Model Files: https://drive.google.com/drive/folders/1xmMWQ6GfwHx0gLyPI9yvADR2nB_6bRUP?usp=sharing
+
 Run the notebook to get the joblib file and final dataset which was then used for our Flask and React based web application.

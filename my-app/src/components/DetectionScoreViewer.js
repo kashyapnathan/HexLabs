@@ -26,8 +26,11 @@ function DetectionScoreViewer({ transactionId, threshold }) {
     }
   }, [score, threshold]);
 
+
+
   return (
     <div className="userInfo">
+      <div className = "userPart">
       <div className="circle" style={{ backgroundColor: circleColor }}>
         {score !== null ? (
           <p className="score">{score}</p>
@@ -36,15 +39,28 @@ function DetectionScoreViewer({ transactionId, threshold }) {
         )}
       </div>
       <h2 className="fraudScoreText"> Fraud Score </h2>
+      </div>
       <div className="infoPart">
         <p> Transaction ID: {transID} </p>
         <p> Name: {name} </p>
-        {/* Add the fetch score button */}
+        {score > threshold ? (
+          <div class = "alert">
+            {/* HTML to insert if the score is greater than the threshold */}
+            <p>Your score is greater than the threshold!</p>
+            <p>Check the customers ID</p>
+          </div>
+        ) : 
+        (<div> 
+        <br></br>
+        <br></br>
+        <br></br>
+        </div>) }
         <button className="Next">
           Next
         </button>
       </div>
-    </div>
+      </div>
+      
   );
 }
 
